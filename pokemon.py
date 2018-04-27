@@ -1,4 +1,5 @@
 # Eduardo Airton
+#http://jogandootpokemon.blogspot.com.br/2013/04/tipos-de-pokemon-e-suas.html
 #Tipos de pokemon usados: Fogo - Agua - Eletrico - Grama - Gelo
 import os
 import random
