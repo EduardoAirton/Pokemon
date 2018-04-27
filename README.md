@@ -10,7 +10,7 @@ And press enter. That it.
 
 ### Prerequisites
 
-First you need to install [Python](https://www.python.org/downloads/). Always download the lasted version. Then it's better if you download [anaconda](https://conda.io/miniconda.html) to use his prompt. 
+First you need to install [Python](https://www.python.org/downloads/), always download the lasted version, then it's better if you download [anaconda](https://conda.io/miniconda.html) to use it's prompt. 
 
 ## Built With
 
