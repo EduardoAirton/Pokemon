@@ -26,7 +26,7 @@ class Pokemons:
 
 class pokemonFogo(Pokemons):
     def __init__(self, nome):
-        super().__init__("Charizard")
+        super().__init__("Charizard", "Fogo")
         self.tipo = "Fogo"
         self.FORTE1 = "Grama"
         self.FRACO1 = "Agua"
@@ -35,7 +35,7 @@ class pokemonFogo(Pokemons):
 
 class pokemonAgua(Pokemons):
     def __init__(self, nome):
-        super().__init__("Blastoise")
+        super().__init__("Blastoise", "Agua")
         self.tipo = "Agua"
         self.FORTE1 = "Fogo"
         self.FRACO1 = "Agua"
@@ -43,7 +43,7 @@ class pokemonAgua(Pokemons):
 
 class pokemonEletrico(Pokemons):
     def __init__(self, nome):
-        super().__init__("Electabuzz")
+        super().__init__("Electabuzz", "Eletrico")
         self.tipo = "Eletrico"
         self.FORTE1 = "Agua"
         self.FRACO1 = "Fogo"
@@ -51,7 +51,7 @@ class pokemonEletrico(Pokemons):
 
 class pokemonGrama(Pokemons):
     def __init__(self, nome):
-        super().__init__("Vileplume")
+        super().__init__("Vileplume", "Grama")
         self.tipo = "Grama"
         self.FORTE2 = "Gelo"
         self.FRACO1 = "Agua"
@@ -59,15 +59,41 @@ class pokemonGrama(Pokemons):
 
 class pokemonGelo(Pokemons):
     def __init__(self, nome):
-        super().__init__("Jynx")
+        super().__init__("Jynx", "Gelo")
         self.tipo = "Gelo"
         self.FORTE1 = "Grama"
         self.FRACO1 = "Fogo"
         self.FRACO2 = "Agua"
 
-if __name__ == '__main__':
-    poke = Artes()
-    poke.pokemon3()
+class Luta():
+    def __init__(self, pokemon1, pokemon2):
+        self.pokemon1 = pokemon1
+        self.pokemon2 = pokemon2
+
+        self.pokemon1_lutaPontos = 0
+        self.pokemon2_lutaPontos = 0
+
+        def lutar(self):
+            print("====LUTA INICIADA====\n")
+            print("== {} VS {} ==".format(self.pokemon1.nome, self.pokemon2.nome))
+            round = 1
+            diferenca = 0
+
+            while round < 3 || diferenca > 2:
+                while self.pokemon1.vida > 0 || self.pokemon2.vida > 0:
+                    ataque1 = self.pokemon1.atacar()
+
+
+
+    def verificarAtaque(self, tipoAtaque, pokemonAtaque, pokemonDefesa):
+        #Forte = 15 Fraco = 5 Especial = 25
+        if pokemonAtaque.FORTE1 == pokemonDefesa.tipo:
+            pass
+
+
+
+
+
 
 
 
