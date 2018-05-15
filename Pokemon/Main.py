@@ -47,14 +47,16 @@ class Luta():
         print("====LUTA INICIADA====\n")
         print("== {} VS {} ==".format(self.pokemon1.nome, self.pokemon2.nome))
         round = 0
-        diferenca = 0
         ataque1 = 0
         ataque2 = 0
 
-        while round < 3 or diferenca < 2:
+        while round < 3:
+            self.pokemon1.vida = 100
+            self.pokemon2.vida = 100
             round += 1
             print("Round {}".format(round))
-            while self.pokemon1.vida > 0 or self.pokemon2.vida > 0:
+            
+            while self.pokemon1.vida > 0 and self.pokemon2.vida > 0:
 
                 if self.pokemon1.stamina < 5:
                     self.pokemon1.stamina += 1
