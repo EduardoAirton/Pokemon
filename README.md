@@ -16,6 +16,7 @@ First you need to install [Python](https://www.python.org/downloads/), always do
 
 * [Python](https://www.python.org/) - The programming language used
 * [Random](https://docs.python.org/3/library/random.html) - The library to create Random numbers
+* [Thinker](https://docs.python.org/2/library/tkinter.html) - The Python interface
 
 
 ## Contributing
