@@ -3,6 +3,7 @@
 import os
 from random import randint
 from Artes import Artes
+from Pokemons import *
 
 
 os.system('cls') #Limpa o prompt
@@ -10,9 +11,6 @@ os.system('mode con: cols=150 lines=40') #Determina o tamanho do console
 
 global ERRORMESSAGE
 ERRORMESSAGE = ("\n----------------------\nERRO\nDigite um numero valido!\n------------------------\n")
-class Application:
-    def __init__(self, master=None):
-      pass
 
 class Pokemons:
     def __init__(self, nome, tipo):
@@ -69,7 +67,9 @@ class Luta():
             self.pokemon1.vida = 100
             self.pokemon2.vida = 100
             round += 1
-            print("Round {}".format(round))
+            os.system('cls') #Limpa o prompt
+            roundString = "===================================== - Round {} - =====================================\n".format(round)
+            print(roundString.center(150))
 
             while self.pokemon1.vida > 0 and self.pokemon2.vida > 0:
 
@@ -79,19 +79,20 @@ class Luta():
                     self.pokemon2.stamina+= 1
 
                 while self.pokemon1.stamina > 0:
-                    print("Vida {} = {} ******** Vida {} = {}".format(self.pokemon1.nome,self.pokemon1.vida, self.pokemon2.nome, self.pokemon2.vida))
+                    vida = "Vida {} = {} ******** Vida {} = {}".format(self.pokemon1.nome,self.pokemon1.vida, self.pokemon2.nome, self.pokemon2.vida)
+                    print(vida.center(145))
                     ataque1 = self.pokemon1.atacar()
                     if ataque1 == 4:
                         break
                     self.verificarAtaque(ataque1, self.pokemon1, self.pokemon2)
 
                 while self.pokemon2.stamina > 0:
-
                     ataque2 = self.criarAtaque(self.pokemon2)
                     if ataque2 == 4:
                         break
                     self.verificarAtaque(ataque2, self.pokemon2, self.pokemon1)
                 continue
+
             if self.pokemon1.vida <= 0:
                 print("VENCEDOR DA PARTIDA {}".format(self.pokemon2.nome))
                 pokemonRodada2 += 1
@@ -113,37 +114,43 @@ class Luta():
             pokemonAtaque.stamina -= 1
             if pokemonAtaque.FORTE1 == pokemonDefesa.tipo:
                 if pokemonDefesa.defesa == True:
-                    print("ATAQUE COM DEFESA\n")
+                    print("\nATAQUE COM DEFESA")
                     pokemonDefesa.vida -= 8
                     dano = 8
                     pokemonDefesa.defesa == False
                 else:
-                    print("ATAQUE FORTE\n")
+                    print("\nATAQUE FORTE")
                     pokemonDefesa.vida -= 15
                     dano = 15
+                print("====================================================")
                 print("{} atacou e {} Tomou {} de DANO".format(pokemonAtaque.nome, pokemonDefesa.nome, dano))
+                print("====================================================\n")
             elif (pokemonAtaque.FRACO1 or pokemonAtaque.FRACO2) == pokemonDefesa.tipo:
                 if pokemonDefesa.defesa == True:
-                    print("ATAQUE COM DEFESA\n")
+                    print("\nATAQUE COM DEFESA")
                     pokemonDefesa.vida -= 5
                     dano = 5
                     pokemonDefesa.defesa == False
                 else:
-                    print("ATAQUE FRACO\n")
+                    print("\nATAQUE FRACO")
                     pokemonDefesa.vida -= 8
                     dano = 8
+                print("====================================================")
                 print("{} atacou e {} Tomou {} de DANO".format(pokemonAtaque.nome, pokemonDefesa.nome, dano))
+                print("====================================================\n")
             else:
                 if pokemonDefesa.defesa == True:
-                    print("ATAQUE COM DEFESA\n")
+                    print("\nATAQUE COM DEFESA")
                     pokemonDefesa.vida -= 5
                     dano = 5
                     pokemonDefesa.defesa == False
                 else:
-                    print("ATAQUE\n")
+                    print("\nATAQUE")
                     pokemonDefesa.vida -= 10
                     dano = 10
+                print("====================================================")
                 print("{} atacou e {} Tomou {} de DANO".format(pokemonAtaque.nome, pokemonDefesa.nome, dano))
+                print("====================================================\n")
 
         elif tipoAtaque == 2:
             pokemonAtaque.stamina -= 2
@@ -157,7 +164,9 @@ class Luta():
             else:
                 pokemonDefesa.vida -= 25
                 dano = 25
+            print("\n====================================================\n")
             print("{} utilizou o ESPECIAL e {} Tomou {} de DANO".format(pokemonAtaque.nome, pokemonDefesa.nome, dano))
+            print("====================================================\n")
         else:
             return
         return
@@ -168,10 +177,6 @@ class Luta():
 
         while i != 0:
             ataque = randint(1,6)
-            print("===============================")
-            print("STAMINA = {}".format(pokemonAtaque.stamina))
-            print("Ataque = {}".format(ataque))
-            print("===============================\n")
             if pokemonAtaque.stamina == 5:
                 return 3
             elif ataque == 5:
@@ -184,21 +189,6 @@ class Luta():
                 i = 0
 
         return ataque
-class PokemonFogo(Pokemons):
-    def __init__(self, nome):
-        super().__init__("Charizard", "Fogo")
-        self.tipo = "Fogo"
-        self.FORTE1 = "Grama"
-        self.FRACO1 = "Agua"
-        self.FRACO2 = "Fogo"
-        #self.arte = Artes.fogo;
-class PokemonGelo(Pokemons):
-    def __init__(self, nome):
-        super().__init__("Jynx", "Gelo")
-        self.tipo = "Gelo"
-        self.FORTE1 = "Grama"
-        self.FRACO1 = "Fogo"
-        self.FRACO2 = "Agua"
 
 if __name__ == '__main__':
     p1 = PokemonFogo("Eduardo")
@@ -206,10 +196,3 @@ if __name__ == '__main__':
     resultado = Luta(p1, p2)
 
     resultado.lutar()
-
-
-# def desenha_ring(altura = 15, largura = 60, simbolo = '#', preenchimento = ' '):
-#     print(simbolo * largura)
-#     for _ in range(altura-2):
-#         print('{}{}{}'.format(simbolo, preenchimento * (largura - 2), simbolo))
-#     print(simbolo * largura)
