@@ -24,9 +24,11 @@ Feel free to send any update
 
 If you see a code or method here that doesn't work anymore with the current python version or is not a good fit, please submit a pull request to improve this file or consider updating it, thank you!
 
+## Arts
+*[Pokemons ASCII](http://ascii.co.uk/art/pokemon)
+
 ## Authors
 
 * **Eduardo Airton** - [GitHub](https://github.com/EduardoAirton) - [Linkedin](https://www.linkedin.com/in/eduardo-airton/)
 
-## Arts
-*[Pokemons ASCII](http://ascii.co.uk/art/pokemon)
+
