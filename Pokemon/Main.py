@@ -1,5 +1,7 @@
 # Eduardo Airton
 #Tipos de pokemon usados: Fogo - Agua - Eletrico - Grama - Gelo
+
+#Imports
 import os
 from random import randint
 from Artes import Artes
@@ -9,9 +11,10 @@ from Pokemons import *
 os.system('cls') #Limpa o prompt
 os.system('mode con: cols=150 lines=40') #Determina o tamanho do console
 
-global ERRORMESSAGE
+global ERRORMESSAGE #Declaração da mensagem de erro
 ERRORMESSAGE = ("\n----------------------\nERRO\nDigite um numero valido!\n------------------------\n")
 
+#Classe pokemon que é utilizada para instanciar um novo pokemon
 class Pokemons:
     def __init__(self, nome, tipo):
         self.nome = nome
@@ -21,9 +24,11 @@ class Pokemons:
         self.vida = 100
         self.defesa = False
 
+    # Adiciona um ponto no campeonato quando o pokemon vence a batalha
     def adicionar_pontos(self):
         self.pontos += 1
 
+    # Da as opcoes e faz as verificações de ataque do pokemon
     def atacar(self):
         ataque = 0
         i = 1
@@ -44,7 +49,7 @@ class Pokemons:
                 i = 0
         return ataque
 
-
+# Inicia uma luta e so termina quando 1 dos pokemons vence 2 ou mais lutas
 class Luta():
     def __init__(self, pokemon1, pokemon2):
         self.pokemon1 = pokemon1
@@ -71,13 +76,14 @@ class Luta():
             roundString = "===================================== - Round {} - =====================================\n".format(round)
             print(roundString.center(150))
 
+            # Verifica se ambos os pokemons estao vivos caso contrario finaliza o round
             while self.pokemon1.vida > 0 and self.pokemon2.vida > 0:
 
                 if self.pokemon1.stamina < 5:
                     self.pokemon1.stamina += 1
                 if self.pokemon2.stamina < 5:
                     self.pokemon2.stamina+= 1
-
+                # Continua rodando até que o pokemon fique sem stamina deixando o mesmo atacar enquanto tiver stamina disponivel
                 while self.pokemon1.stamina > 0:
                     vida = "Vida {} = {} ******** Vida {} = {}".format(self.pokemon1.nome,self.pokemon1.vida, self.pokemon2.nome, self.pokemon2.vida)
                     print(vida.center(145))
@@ -99,14 +105,14 @@ class Luta():
             else:
                 print("VENCEDOR DA PARTIDA {}".format(self.pokemon1.nome))
                 pokemonRodada1 += 1
-
+        # Verifica quem tem a maior quantidade de vitorias por rodada para anunciar o vencedor da partida
         if pokemonRodada1 > pokemonRodada2:
             print("VENCEDOR DO JOGO {}".format(self.pokemon1.nome))
             self.pokemon1.adicionar_pontos()
         else:
             print("VENCEDOR DO JOGO {}".format(self.pokemon2.nome))
             self.pokemon2.adicionar_pontos()
-
+    # Verifica qual sera o nível do ataque dado
     def verificarAtaque(self, tipoAtaque, pokemonAtaque, pokemonDefesa):
         dano = 0
         #Colocar o codigo repetido em uma função
@@ -170,7 +176,7 @@ class Luta():
         else:
             return
         return
-
+    # Retorna uma atque aleatorio para o adversario tentando criar varias formas de dificultar e dar mais dano ao pokemon adversario
     def criarAtaque(self, pokemonAtaque):
         ataque = 0
         i = 1
@@ -189,7 +195,7 @@ class Luta():
                 i = 0
 
         return ataque
-
+# Main
 if __name__ == '__main__':
     p1 = PokemonFogo("Eduardo")
     p2 = PokemonGelo("Outro")
