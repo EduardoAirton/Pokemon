@@ -12,3 +12,13 @@ if __name__ == '__main__':
 
     c.pack()
     mainloop()
+
+
+    #Dropdown Menu
+    POKEMONS = ["Fogo","Agua","Eletrico","Grama","Gelo"]
+
+    variable = StringVar(master)
+    variable.set(POKEMONS[0]) # valor default
+
+    menu = OptionMenu(master, variable, *POKEMONS)
+    menu.pack()

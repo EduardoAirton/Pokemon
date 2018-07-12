@@ -83,6 +83,7 @@ class Luta():
                     self.pokemon1.stamina += 1
                 if self.pokemon2.stamina < 5:
                     self.pokemon2.stamina+= 1
+
                 # Continua rodando até que o pokemon fique sem stamina deixando o mesmo atacar enquanto tiver stamina disponivel
                 while self.pokemon1.stamina > 0:
                     vida = "Vida {} = {} ******** Vida {} = {}".format(self.pokemon1.nome,self.pokemon1.vida, self.pokemon2.nome, self.pokemon2.vida)
@@ -105,6 +106,7 @@ class Luta():
             else:
                 print("VENCEDOR DA PARTIDA {}".format(self.pokemon1.nome))
                 pokemonRodada1 += 1
+
         # Verifica quem tem a maior quantidade de vitorias por rodada para anunciar o vencedor da partida
         if pokemonRodada1 > pokemonRodada2:
             print("VENCEDOR DO JOGO {}".format(self.pokemon1.nome))
@@ -112,6 +114,7 @@ class Luta():
         else:
             print("VENCEDOR DO JOGO {}".format(self.pokemon2.nome))
             self.pokemon2.adicionar_pontos()
+
     # Verifica qual sera o nível do ataque dado
     def verificarAtaque(self, tipoAtaque, pokemonAtaque, pokemonDefesa):
         dano = 0
@@ -176,6 +179,7 @@ class Luta():
         else:
             return
         return
+
     # Retorna uma atque aleatorio para o adversario tentando criar varias formas de dificultar e dar mais dano ao pokemon adversario
     def criarAtaque(self, pokemonAtaque):
         ataque = 0
@@ -195,8 +199,13 @@ class Luta():
                 i = 0
 
         return ataque
+    def criarPokemon(self, nome):
+
 # Main
 if __name__ == '__main__':
+    nomePokemon = input("Escolha seu Pokemon \n Digite o nome: ")
+    #tipoPokemon sera feito pelo thinker a ser finalizado
+
     p1 = PokemonFogo("Eduardo")
     p2 = PokemonGelo("Outro")
     resultado = Luta(p1, p2)
