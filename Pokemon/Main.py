@@ -203,11 +203,14 @@ class Luta():
 
 # Main
 if __name__ == '__main__':
+    todosPokemonsVivos = true
     nomePokemon = input("Escolha seu Pokemon \n Digite o nome: ")
     #tipoPokemon sera feito pelo thinker a ser finalizado
 
-    p1 = PokemonFogo("Eduardo")
-    p2 = PokemonGelo("Outro")
-    resultado = Luta(p1, p2)
+    while(todosPokemonsVivos):
+        #Roda todo o campeonato
 
-    resultado.lutar()
+    # p1 = PokemonFogo("Eduardo")
+    # p2 = PokemonGelo("Outro")
+    # resultado = Luta(p1, p2)
+    # resultado.lutar()
