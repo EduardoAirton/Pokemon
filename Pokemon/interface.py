@@ -1,6 +1,7 @@
+#Eduardo Airton
+
 from tkinter import *
 from Main import *
-
 
 def callback():
     print ("Click!")

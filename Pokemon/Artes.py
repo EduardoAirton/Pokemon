@@ -1,3 +1,6 @@
+#Eduardo Airton
+
+#Site de Referência para as artes: http://ascii.co.uk/art/pokemon
 class Artes:
     def pokemon(self):
         print("                                                                                                              ")
@@ -137,7 +140,7 @@ class Artes:
         print("            jg ggh      hgj gggf\n")
         print("          og  h   hgfgfj   f  j gh\n")
         print("            gh h  h      hg  g\n")
-    def pokemon10(self):# Electrode 
+    def pokemon10(self):# Electrode
         print("                     ..-----..\n")
         print("                  .'-____---~'.\n")
         print("                 :             :\n")
