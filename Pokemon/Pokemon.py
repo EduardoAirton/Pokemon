@@ -1,5 +1,6 @@
 #Eduardo Airton
 
+from Mensagens import *
 #Classe pokemon que é utilizada para instanciar um novo pokemon
 class Pokemons:
     def __init__(self, nome, tipo):
@@ -16,6 +17,7 @@ class Pokemons:
 
     # Da as opcoes e faz as verificações de ataque do pokemon
     def atacar(self):
+        mensagem = Mensagens()
         ataque = 0
         i = 1
 
@@ -25,10 +27,10 @@ class Pokemons:
                 print("1 - Atacar\n2 - Defender\n3 - ESPECIAL\n4 - Passar")
                 ataque = int(input("-> "))
             except ValueError:
-                    print(ERRORMESSAGE)
-                    continue
+                mensagem.errorMessage(self)
+                continue
             if ataque > 4:
-                print(ERRORMESSAGE)
+                mensagem.errorMessage(self)
             if (ataque == 1 and self.stamina < 1) or (ataque == 2 and self.stamina < 2) or (ataque == 3 and self.stamina < 5):
                 print("Stamina insuficiente")
             else:

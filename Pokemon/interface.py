@@ -14,7 +14,6 @@ if __name__ == '__main__':
     c.pack()
     mainloop()
 
-
     #Dropdown Menu
     POKEMONS = ["Fogo","Agua","Eletrico","Grama","Gelo"]
 

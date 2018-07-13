@@ -5,16 +5,15 @@
 import os
 from random import randint
 from Artes import Artes
-from Pokemons import *
+from Pokemon import *
+from Mensagens import *
 
 os.system('cls') #Limpa o prompt
 os.system('mode con: cols=150 lines=40') #Determina o tamanho do console
 
-global ERRORMESSAGE #Declaração da mensagem de erro
-ERRORMESSAGE = ("\n----------------------\nERRO\nDigite um numero valido!\n------------------------\n")
-
 # Inicia uma luta e so termina quando 1 dos pokemons vence 2 ou mais lutas
 class Luta():
+
     def __init__(self, pokemon1, pokemon2):
         self.pokemon1 = pokemon1
         self.pokemon2 = pokemon2
@@ -23,6 +22,7 @@ class Luta():
         self.pokemon2_lutaPontos = 0
 
     def lutar(self):
+        mensagem = Mensagens()
         print("====LUTA INICIADA====\n")
         print("== {} VS {} ==".format(self.pokemon1.nome, self.pokemon2.nome))
         round = 0
@@ -37,8 +37,7 @@ class Luta():
             self.pokemon2.vida = 100
             round += 1
             os.system('cls') #Limpa o prompt
-            roundString = "===================================== - Round {} - =====================================\n".format(round)
-            print(roundString.center(150))
+            mensagem.roundInicio(self, round)
 
             # Verifica se ambos os pokemons estao vivos caso contrario finaliza o round
             while self.pokemon1.vida > 0 and self.pokemon2.vida > 0:
@@ -50,8 +49,7 @@ class Luta():
 
                 # Continua rodando até que o pokemon fique sem stamina deixando o mesmo atacar enquanto tiver stamina disponivel
                 while self.pokemon1.stamina > 0:
-                    vida = "Vida {} = {} ******** Vida {} = {}".format(self.pokemon1.nome,self.pokemon1.vida, self.pokemon2.nome, self.pokemon2.vida)
-                    print(vida.center(145))
+                    mensagem.vidaMessage(self, self.pokemon1, self.pokemon2)
                     ataque1 = self.pokemon1.atacar()
                     if ataque1 == 4:
                         break
@@ -63,24 +61,25 @@ class Luta():
                         break
                     self.verificarAtaque(ataque2, self.pokemon2, self.pokemon1)
                 continue
-
+            #Atribui o vencedor
             if self.pokemon1.vida <= 0:
-                print("VENCEDOR DA PARTIDA {}".format(self.pokemon2.nome))
+                mensagem.vidaMessage(self, pokemon2)
                 pokemonRodada2 += 1
             else:
-                print("VENCEDOR DA PARTIDA {}".format(self.pokemon1.nome))
+                mensagem.vidaMessage(self, pokemon1)
                 pokemonRodada1 += 1
 
         # Verifica quem tem a maior quantidade de vitorias por rodada para anunciar o vencedor da partida
         if pokemonRodada1 > pokemonRodada2:
-            print("VENCEDOR DO JOGO {}".format(self.pokemon1.nome))
+            mensagem.vidaMessage(self, pokemon1)
             self.pokemon1.adicionar_pontos()
         else:
-            print("VENCEDOR DO JOGO {}".format(self.pokemon2.nome))
+            mensagem.vidaMessage(self, pokemon2)
             self.pokemon2.adicionar_pontos()
 
     # Verifica qual sera o nível do ataque dado
     def verificarAtaque(self, tipoAtaque, pokemonAtaque, pokemonDefesa):
+        mensagem = Mensagens()
         dano = 0
         #Colocar o codigo repetido em uma função
         if tipoAtaque == 1:
@@ -95,9 +94,7 @@ class Luta():
                     print("\nATAQUE FORTE")
                     pokemonDefesa.vida -= 15
                     dano = 15
-                print("====================================================")
-                print("{} atacou e {} Tomou {} de DANO".format(pokemonAtaque.nome, pokemonDefesa.nome, dano))
-                print("====================================================\n")
+
             elif (pokemonAtaque.FRACO1 or pokemonAtaque.FRACO2) == pokemonDefesa.tipo:
                 if pokemonDefesa.defesa == True:
                     print("\nATAQUE COM DEFESA")
@@ -108,9 +105,7 @@ class Luta():
                     print("\nATAQUE FRACO")
                     pokemonDefesa.vida -= 8
                     dano = 8
-                print("====================================================")
-                print("{} atacou e {} Tomou {} de DANO".format(pokemonAtaque.nome, pokemonDefesa.nome, dano))
-                print("====================================================\n")
+                mensagem.ataqueMessage(self, pokemonAtaque, pokemonDefesa, dano, 0)
             else:
                 if pokemonDefesa.defesa == True:
                     print("\nATAQUE COM DEFESA")
@@ -121,9 +116,7 @@ class Luta():
                     print("\nATAQUE")
                     pokemonDefesa.vida -= 10
                     dano = 10
-                print("====================================================")
-                print("{} atacou e {} Tomou {} de DANO".format(pokemonAtaque.nome, pokemonDefesa.nome, dano))
-                print("====================================================\n")
+                mensagem.ataqueMessage(self, pokemonAtaque, pokemonDefesa, dano, 0)
 
         elif tipoAtaque == 2:
             pokemonAtaque.stamina -= 2
@@ -137,9 +130,7 @@ class Luta():
             else:
                 pokemonDefesa.vida -= 25
                 dano = 25
-            print("\n====================================================\n")
-            print("{} utilizou o ESPECIAL e {} Tomou {} de DANO".format(pokemonAtaque.nome, pokemonDefesa.nome, dano))
-            print("====================================================\n")
+            mensagem.ataqueMessage(self, pokemonAtaque, pokemonDefesa, dano, 1)
         else:
             return
         return
@@ -163,18 +154,17 @@ class Luta():
                 i = 0
 
         return ataque
-    def criarPokemon(self, nome):
 
 # Main
 if __name__ == '__main__':
-    todosPokemonsVivos = true
+    # todosPokemonsVivos = true
     nomePokemon = input("Escolha seu Pokemon \n Digite o nome: ")
     #tipoPokemon sera feito pelo thinker a ser finalizado
 
-    while(todosPokemonsVivos):
-        #Roda todo o campeonato
+    # while(todosPokemonsVivos):
+    #     #Roda todo o campeonato
 
-    # p1 = PokemonFogo("Eduardo")
-    # p2 = PokemonGelo("Outro")
-    # resultado = Luta(p1, p2)
-    # resultado.lutar()
+    p1 = PokemonFogo("Eduardo")
+    p2 = PokemonGelo("Outro")
+    resultado = Luta(p1, p2)
+    resultado.lutar()
